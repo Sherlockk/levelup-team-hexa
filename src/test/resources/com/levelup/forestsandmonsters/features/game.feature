@@ -4,7 +4,7 @@ Feature: Start Game
 Start a game for a given Character
 
 
-Scenario Outline:: Start Game
+Scenario Outline: Start Game
     Given a Character
     When Player starts the Game
     Then Game creates a Map and sets initial position and set them as part of the Character 
