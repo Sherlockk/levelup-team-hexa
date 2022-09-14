@@ -7,10 +7,13 @@ Start a game for a given Character
 Scenario Outline: Start Game
     Given a Character with name <characterName>
     When Player starts the Game
-    Then Game creates a Map and sets initial position and set them as part of the Character 
+    Then the Game set the map size to <mapSize>
+    And the initial position is <initialPositionX> 
+    And <initialPositionY>
+    And the move count is <initialMoveCount>
     Examples:
-        | characterName | characterNameOutput |
-        | "" | ""       |
-        | Geo | Geo, move count zero, New Map and Initial Position   0,0 |
-        | Roy | Roy, move count zero, New Map and Initial Position   0,0 | 
+        | characterName | characterNameOutput | mapSize | initialPositionX | initialPositionY | initialMoveCount
+        | "" | "" | null | null | null | null
+        | "Geo" | "Geo" | 100 | 0 | 0 | 0
+        | "Roy" | "Roy" | 100 | 0 | 0 | 0 
 
