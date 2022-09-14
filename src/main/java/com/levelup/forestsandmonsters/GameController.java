@@ -48,4 +48,11 @@ public class GameController {
         // TODO: Should probably also update the game results
     }
 
+    public void setCharacterPosition(Point coordinate) {
+        // TODO
+    }
+    public int getTotalPositions() {
+        // TODO
+        return -1;
+    }
 }
