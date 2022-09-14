@@ -1,15 +1,16 @@
-Feature: ForestsAndMonsters
+Feature: Start Game
 ![Gamer](images/gamerErin.png)
 
-I want to create a new custom character, setting only their name.
-This split is VERY simple, to get us started. Just barebones game functionality.
+Start a game for a given Character
 
-Scenario Outline:: Set character name
-    Given the character's name is <characterNameInput>
-    When the character sets their name
-    Then the Game sets the character's name to <characterNameOutput>
+
+Scenario Outline:: Start Game
+    Given a Character
+    When Player starts the Game
+    Then Game creates a Map and sets initial position and set them as part of the Character 
     Examples:
-        | characterNameInput | characterNameOutput |
-        | "Erin"          | "Erin"           |
-        | ""              | "Character"         |
+        | Character | Character Output |
+        | DNE       | DNE        |
+        | Character with Name  "Geo"        | Character with Name Geo, move count zero, New Map and Initial Position   0,0    |
+        | Character with Name "Roy".        | Character with Name Roy, move count zero, New Map and Initial Position   0,0  
 
