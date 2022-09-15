@@ -5,9 +5,9 @@ Feature: Move in a direction
     Scenario Outline: Move in a direction 
     Given the character starts at position with XCoordinate <startingPositionX>
     And starts at YCoordinate <startingPositionY>
-    And the player choses to move North
+    And the player choses to move in <direction>
     When the character moves
-    Then the character is not at position with XCoordinate <endingPositionX>
+    Then the character is now at position with XCoordinate <endingPositionX>
     And YCoordinate <endingPositionY>
 
     Examples:
