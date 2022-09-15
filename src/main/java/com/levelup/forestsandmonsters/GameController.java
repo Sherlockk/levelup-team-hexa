@@ -13,7 +13,7 @@ public class GameController {
         public Point currentPosition = null;
 
         public void setCharacterPosition (Point coordinates) {
-            
+            this.currentPosition = coordinates;
         }
     }
 
