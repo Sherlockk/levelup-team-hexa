@@ -6,7 +6,6 @@ Get the status for a given Character
 
 Scenario Outline: Get Character Status
     Given a Character with name <characterName>
-    and 
     When Player Ends the Game
     Then the Game displays the <characterNameOutput>
     And the current positionX <currentPositionX> 
