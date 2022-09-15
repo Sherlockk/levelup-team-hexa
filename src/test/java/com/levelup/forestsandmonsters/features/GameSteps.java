@@ -11,6 +11,9 @@ public class GameSteps {
 
     GameController gc;
     String characterName;
+    int positionX;
+    int positionY;
+    int totalMoves;
 
 @Given("a Character with name {string}")
 public void a_character_with_name(String string) {
@@ -22,7 +25,7 @@ public void a_character_with_name(String string) {
 public void player_starts_the_game() {
     // Write code here that turns the phrase above into concrete actions
     // throw new io.cucumber.java.PendingException();
-
+    gc.startGame();
 }
 
 @Then("the Game set the map size to {int}")
