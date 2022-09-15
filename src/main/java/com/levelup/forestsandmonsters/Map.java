@@ -13,10 +13,10 @@ public class Map {
         createMap(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
-    public Map(int w, int h) throws Exception{
+    public Map(int w, int h) throws MapInstantiationException{
 
         if (w < 0 || h < 0)
-        throw new Exception("Can't instantiate map with negative dimension");
+        throw new MapInstantiationException("Can't instantiate map with negative dimension");
 
         this.width = w;
         this.height = h;
@@ -78,5 +78,16 @@ public class Map {
         else
             return position;
 
+    }
+
+    class MapInstantiationException extends Exception {
+
+        private String message;
+
+        public MapInstantiationException(String msg) {
+
+            this.message = msg;
+
+        }
     }
 }

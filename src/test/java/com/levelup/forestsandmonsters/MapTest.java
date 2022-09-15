@@ -10,6 +10,8 @@ import java.awt.Point;
 
 import org.junit.Test;
 
+import com.levelup.forestsandmonsters.Map.MapInstantiationException;
+
 public class MapTest {
    
     @Test
@@ -32,7 +34,7 @@ public class MapTest {
 
     @Test
     public void initializeNegativeWidthBlocked() {
-        assertThrows(Exception.class, () -> {
+        assertThrows(MapInstantiationException.class, () -> {
             Map map = new Map(-1, 10);   ;
         });
     }
