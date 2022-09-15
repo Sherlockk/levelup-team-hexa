@@ -15,7 +15,7 @@ import java.awt.Point;
 public class MoveSteps {
 
     GameController gc;
-    int startX, startY, endX, endY;
+    int startX, startY;
     GameController.DIRECTION direction;
     Point currentPosition;
     
@@ -24,6 +24,7 @@ public class MoveSteps {
     public void the_character_starts_at_position_with_x_coordinate(Integer int1) {
         // Write code here that turns the phrase above into concrete actions
         gc = new GameController();
+        gc.startGame();
         this.startX = int1;
     }
     
@@ -37,24 +38,6 @@ public class MoveSteps {
     public void the_player_choses_to_move_in_n() {
         // Write code here that turns the phrase above into concrete actions
         this.direction = GameController.DIRECTION.NORTH;
-    }
-    
-    @When("the character moves")
-    public void the_character_moves() {
-        // Write code here that turns the phrase above into concrete actions
-        gc.move(this.direction);
-    }
-    
-    @Then("the character is now at position with XCoordinate {int}")
-    public void the_character_is_now_at_position_with_x_coordinate(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        assertEquals(int1, this.endX);
-    }
-    
-    @Then("YCoordinate {int}")
-    public void y_coordinate(Integer int1) {
-        // Write code here that turns the phrase above into concrete actions
-        assertEquals(int1, this.endY);
     }
     
     @Given("the player choses to move in S")
@@ -75,6 +58,25 @@ public class MoveSteps {
         this.direction = GameController.DIRECTION.EAST;
     }
 
+    @When("the character moves")
+    public void the_character_moves() {
+        // Write code here that turns the phrase above into concrete actions
+        gc.move(this.direction);
+    }
+    
+    @Then("the character is now at position with XCoordinate {int}")
+    public void the_character_is_now_at_position_with_x_coordinate(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        assertEquals(int1, gc.getStatus().currentPosition.x);
+    }
+    
+    @Then("YCoordinate {int}")
+    public void y_coordinate(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        assertEquals(int1, gc.getStatus().currentPosition.y);
+    }
+    
+    
 
     /* 
     @Given("the character starts at position with XCoordinates {int}")
