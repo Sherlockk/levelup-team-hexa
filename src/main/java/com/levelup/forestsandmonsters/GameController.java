@@ -11,6 +11,7 @@ public class GameController {
         // TODO: Add other status data
         public String characterName = DEFAULT_CHARACTER_NAME;
         public Point currentPosition = null;
+        public int moveCount = 0;
 
         public void setCharacterPosition (Point coordinates) {
             this.currentPosition = coordinates;
@@ -57,6 +58,10 @@ public class GameController {
         // TODO
     }
     public int getTotalPositions() {
+        // TODO
+        return -1;
+    }
+    public int getMoveCount() {
         // TODO
         return -1;
     }
