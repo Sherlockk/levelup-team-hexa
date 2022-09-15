@@ -1,11 +1,9 @@
 package com.levelup.forestsandmonsters;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.lang.reflect.Executable;
 import java.awt.Point;
 
 import org.junit.Test;
@@ -34,7 +32,7 @@ public class MapTest {
 
     @Test
     public void initializeNegativeWidthBlocked() {
-        assertThrows(MapInstantiationException.class, () -> {
+        assertThrows(MapInstantiationException  .class, () -> {
             Map map = new Map(-1, 10);   ;
         });
     }
