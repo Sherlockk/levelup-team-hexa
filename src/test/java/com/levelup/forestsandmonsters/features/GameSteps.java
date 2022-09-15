@@ -47,6 +47,7 @@ public void the_initial_position_y_is(Integer int1) {
 public void the_move_count_is(Integer int1) {
     // Write code here that turns the phrase above into concrete actions
     // throw new io.cucumber.java.PendingException();
+    assertEquals( (int) int1, 5);
 }
 
 @Then("character name is {string}")
