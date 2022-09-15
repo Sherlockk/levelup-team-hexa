@@ -43,6 +43,8 @@ public class GameController {
         // TODO: Implement startGame - Should probably create tiles and put the character
         // on them?
         // TODO: Should also update the game results?
+        status.currentPosition = new Point(0,0);
+        
     }
 
     public GameStatus getStatus() {
@@ -59,7 +61,7 @@ public class GameController {
     }
     public int getTotalPositions() {
         // TODO
-        return -1;
+        return 100;
     }
     public int getMoveCount() {
         // TODO
