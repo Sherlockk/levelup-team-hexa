@@ -18,6 +18,7 @@ public class GameSteps {
 @Given("a Character with name {string}")
 public void a_character_with_name(String string) {
     // Write code here that turns the phrase above into concrete actions
+    gc = new GameController();
     this.characterName = "Geo"; // throw new io.cucumber.java.PendingException();
 }
 
@@ -32,6 +33,7 @@ public void player_starts_the_game() {
 public void the_game_set_the_map_size_to(Integer int1) {
     // Write code here that turns the phrase above into concrete actions
     // throw new io.cucumber.java.PendingException();
+    assertEquals(expected, actual);
 }
 
 @Then("the initial positionX is {int}")
