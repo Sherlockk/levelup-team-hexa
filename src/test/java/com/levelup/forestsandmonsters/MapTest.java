@@ -78,5 +78,41 @@ public class MapTest {
     @Test
     public void validatePositionWorks() {
 
+
+        Map map = new Map();
+
+        
+        boolean IsValid = map.validatePosition(-1,-1);
+        assertEquals(false,IsValid);
+
+          IsValid = map.validatePosition(-1,4);
+          assertEquals(false,IsValid);
+
+          IsValid = map.validatePosition(5,-1);
+          assertEquals(false,IsValid);
+
+          IsValid = map.validatePosition(10,10);
+          assertEquals(false,IsValid);
+
+          IsValid = map.validatePosition(10,4);
+          assertEquals(false,IsValid);
+
+          IsValid = map.validatePosition(3,10);
+            assertEquals(false,IsValid);
+
+            IsValid = map.validatePosition(6,4);
+            assertEquals(true,IsValid);
+
+            IsValid = map.validatePosition(0,0);
+            assertEquals(true,IsValid);
+
+            IsValid = map.validatePosition(9,9);
+            assertEquals(true,IsValid);
+
+            IsValid = map.validatePosition(9,2);
+            assertEquals(true,IsValid);
+
+            IsValid = map.validatePosition(3,9);
+            assertEquals(true,IsValid);
     }
 }
