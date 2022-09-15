@@ -19,6 +19,7 @@ public class GameController {
     }
 
     GameStatus status;
+    Map map;
 
     public GameController() {
         status = new GameStatus();
@@ -43,6 +44,8 @@ public class GameController {
         // TODO: Implement startGame - Should probably create tiles and put the character
         // on them?
         // TODO: Should also update the game results?
+        this.map = new Map();
+        
         status.currentPosition = new Point(0,0);
         
     }
@@ -60,11 +63,13 @@ public class GameController {
         // TODO
     }
     public int getTotalPositions() {
-        // TODO
-        return 100;
+        if (this.map != null) {
+            return (this.map.getHeight() +1) * (this.map.getWidth() + 1);
+        } else {
+            return -1;
+        }
     }
     public int getMoveCount() {
-        // TODO
-        return -1;
+        return getStatus().moveCount;
     }
 }
