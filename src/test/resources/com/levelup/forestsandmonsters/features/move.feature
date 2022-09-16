@@ -13,7 +13,7 @@ Feature: Move in a direction
     Examples:
     |startingPositionX | startingPositionY | direction | endingPositionX | endingPositionY |
     |5|8|N|5|9|
-    |10|10|S|10|9|
-    |1|4|W|1|4|
+    |9|9|S|9|8|
+    |1|4|W|0|4|
     |1|4|E|2|4|
     |3|9|S|3|8|
