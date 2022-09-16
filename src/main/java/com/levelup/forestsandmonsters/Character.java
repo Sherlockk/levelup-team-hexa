@@ -25,6 +25,10 @@ public class Character {
         map = pMap;
     }
 
+    public Point getCurrentPosition() {
+        return currentPosition;
+    }
+
     public void move(GameController.DIRECTION direction) throws GameNotStartedException {
         if (map != null && currentPosition != null) {
            currentPosition =  map.calculatePosition(currentPosition, direction);
