@@ -22,12 +22,13 @@ public class GameController {
 
     protected Point initialPosition = new Point(INITIAL_X, INITIAL_Y);
 
-    GameStatus status;
+    //Character is now responsible for the position, name and move count
+    //GameStatus status;
     Map map;
     Character character;
 
     public GameController() {
-        status = new GameStatus();
+        //status = new GameStatus();
     }
 
     public static enum DIRECTION {
@@ -37,12 +38,13 @@ public class GameController {
     // Pre-implemented to demonstrate ATDD
     // TODO: Update this if it does not match your design
     public void createCharacter(String name) {
+        String characterName;
         if (name != null && !name.equals("")) {
-            status.characterName = name;
+            characterName = name;
         } else {
-            status.characterName = DEFAULT_CHARACTER_NAME;
+            characterName = DEFAULT_CHARACTER_NAME;
         }
-        this.character = new Character(status.characterName);
+        this.character = new Character(characterName);
     }
 
     public void startGame() {
@@ -51,23 +53,22 @@ public class GameController {
         // TODO: Should also update the game results?
         this.map = new Map();
         this.character.init(map, this.initialPosition);
-        status.currentPosition = this.initialPosition;
         
     }
 
     public GameStatus getStatus() {
-        return this.status;
+        GameStatus status = new GameStatus();
+        status.characterName = this.character.getName();
+        status.currentPosition = this.character.getCurrentPosition();
+        status.moveCount = this.getMoveCount();
+        return status;
     }
 
     public void move(DIRECTION directionToMove) throws GameNotStartedException {
         this.character.move(directionToMove);
-        this.status.currentPosition = this.character.getCurrentPosition();
-        this.status.moveCount++;
-    }
+        System.out.println(this.character.getName() + " you just moved " + directionToMove); 
+    } 
 
-    public void setCharacterPosition(Point coordinate) {
-        // TODO
-    }
     public int getTotalPositions() {
         if (this.map != null) {
             return (this.map.getHeight() +1) * (this.map.getWidth() + 1);
@@ -76,7 +77,7 @@ public class GameController {
         }
     }
     public int getMoveCount() {
-        return getStatus().moveCount;
+        return this.character.getNumOfMoves();
     }
     public Character getCharacter() {
         return this.character;

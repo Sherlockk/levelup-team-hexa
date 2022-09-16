@@ -7,12 +7,14 @@ import java.awt.Point;
 import org.junit.Test;
 
 public class GameControllerTest {
-    @Test
-    public void InitializationCreatesResults() {
-        GameController testObj = new GameController();
-        assertNotNull(testObj.status);
-    }
-
+ /*  @Test
+ // This test is no longer valid since we're not creating status in constructor
+  public void InitializationCreatesResults() {
+    GameController testObj = new GameController();
+        //We no longer holding the status at an internal field in GameController class
+        //assertNotNull(testObj.status);
+  }
+*/
     /*******************    createCharacter() tests           *************** */
     // creates a character with the name Roy
     @Test
@@ -60,16 +62,15 @@ public class GameControllerTest {
         testObj.move(GameController.DIRECTION.NORTH);
         assertEquals(testObj.getStatus().currentPosition.x, 3);
         assertEquals(testObj.getStatus().currentPosition.y, 5);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().moveCount, 1);
 
     }
 
     private GameController setupGameControllerForMove(int startingMoveCount, String characterName, Point startingPosition) {
         GameController testObj = new GameController();
         testObj.createCharacter(characterName);
+        testObj.setInitialPosition(startingPosition);
         testObj.startGame();
-        testObj.setCharacterPosition(startingPosition);
-        testObj.getStatus().moveCount = startingMoveCount;
         return testObj;
     }
     // Test valid move south
@@ -80,7 +81,7 @@ public class GameControllerTest {
         testObj.move(GameController.DIRECTION.SOUTH);
         assertEquals(testObj.getStatus().currentPosition.x, 3);
         assertEquals(testObj.getStatus().currentPosition.y, 3);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().moveCount, 1);
 
     }
     // Test valid move east
@@ -92,7 +93,7 @@ public class GameControllerTest {
         testObj.move(GameController.DIRECTION.EAST);
         assertEquals(testObj.getStatus().currentPosition.x, 4);
         assertEquals(testObj.getStatus().currentPosition.y, 4);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().moveCount, 1);
 
     }
     // Test valid move west
@@ -103,7 +104,7 @@ public class GameControllerTest {
         testObj.move(GameController.DIRECTION.WEST);
         assertEquals(testObj.getStatus().currentPosition.x, 2);
         assertEquals(testObj.getStatus().currentPosition.y, 4);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().moveCount, 1);
 
     }
     // Test invalid move north
@@ -114,7 +115,7 @@ public class GameControllerTest {
         testObj.move(GameController.DIRECTION.NORTH);
         assertEquals(testObj.getStatus().currentPosition.x, 3);
         assertEquals(testObj.getStatus().currentPosition.y, 9);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().moveCount, 1);
     }
     // Test invalid move south
     @Test
@@ -124,17 +125,17 @@ public class GameControllerTest {
         testObj.move(GameController.DIRECTION.SOUTH);
         assertEquals(testObj.getStatus().currentPosition.x, 7);
         assertEquals(testObj.getStatus().currentPosition.y, 0);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().moveCount, 1);
     }
     // Test invalid move east
     @Test
     public void invalidMoveEast() throws GameNotStartedException{
         int startingMoveCount = 31;
-        GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(5,9));
+        GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(9,5));
         testObj.move(GameController.DIRECTION.EAST);
-        assertEquals(testObj.getStatus().currentPosition.x, 5);
-        assertEquals(testObj.getStatus().currentPosition.y, 9);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().currentPosition.x, 9);
+        assertEquals(testObj.getStatus().currentPosition.y, 5);
+        assertEquals(testObj.getStatus().moveCount, 1);
     }
     // Test invalid move west
     @Test
@@ -144,7 +145,7 @@ public class GameControllerTest {
         testObj.move(GameController.DIRECTION.WEST);
         assertEquals(testObj.getStatus().currentPosition.x, 0);
         assertEquals(testObj.getStatus().currentPosition.y, 2);
-        assertEquals(testObj.getStatus().moveCount, startingMoveCount+1);
+        assertEquals(testObj.getStatus().moveCount, 1);
     }
 
     /*******************    startGameTest() tests           *************** */
