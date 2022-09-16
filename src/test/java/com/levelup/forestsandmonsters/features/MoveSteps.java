@@ -1,6 +1,7 @@
 package com.levelup.forestsandmonsters.features;
 
 import com.levelup.forestsandmonsters.GameController;
+import com.levelup.forestsandmonsters.GameControllerMock;
 import com.levelup.forestsandmonsters.GameNotStartedException;
 import com.levelup.forestsandmonsters.GameController.DIRECTION;
 
@@ -15,7 +16,7 @@ import java.awt.Point;
 
 public class MoveSteps {
 
-    GameController gc;
+    GameControllerMock gc;
     int startX, startY;
     GameController.DIRECTION direction;
     Point currentPosition;
@@ -61,8 +62,9 @@ public class MoveSteps {
     @When("the character moves")
     public void the_character_moves() throws GameNotStartedException {
         // Write code here that turns the phrase above into concrete actions
-        gc = new GameController();
+        gc = new GameControllerMock();
         gc.createCharacter("Geo");
+        gc.setCharacterPosition(new Point(this.startX, this.startY));
         gc.startGame();
         gc.move(this.direction);
     }
