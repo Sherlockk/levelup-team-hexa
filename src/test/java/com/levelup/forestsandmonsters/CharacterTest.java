@@ -10,17 +10,20 @@ import java.lang.reflect.Executable;
 import org.junit.Test;
 
 import com.levelup.forestsandmonsters.cli.LevelUpCharacter;
+import java.awt.Point;
 
 public class CharacterTest {
    
     @Test
     public void moveTest() {
-        // GameController gc = new GameController();
-        // gc.createCharacter("Test");
-        // LevelUpCharacter character =  new LevelUpCharacter("Test");
-        // Map map = new Map();
-        // map.
-        assertEquals(0, 1);
+        Map map = new Map();
+        Point point = new Point(0,0);
+        Character character = new Character("Test");
+        character.init(map, point);
+        int initMoves = character.getNumOfMoves();
+
+
+        assertEquals(initMoves, 1);
     }
 
     @Test

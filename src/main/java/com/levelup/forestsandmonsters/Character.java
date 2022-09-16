@@ -20,7 +20,7 @@ public class Character {
         return numOfMoves;
     }
 
-    public void startGame(Map pMap, Point position) {
+    public void init(Map pMap, Point position) {
         currentPosition = position;
         map = pMap;
     }
