@@ -37,5 +37,5 @@ public class Character {
             throw new GameNotStartedException("Game not started Character");
         }
     }
-
 }
+

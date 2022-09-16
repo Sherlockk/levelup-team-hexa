@@ -10,48 +10,40 @@ import java.lang.reflect.Executable;
 import org.junit.Test;
 
 import com.levelup.forestsandmonsters.Character;
+import com.levelup.forestsandmonsters.GameController.DIRECTION;
+
 import java.awt.Point;
 
 public class CharacterTest {
    
     @Test
-    public void moveTest() {
+    public void numberOfMovesTest() {
         Map map = new Map();
         Point point = new Point(0,0);
         Character character = new Character("Test");
         character.init(map, point);
-        int initMoves = character.getNumOfMoves();
 
 
-        assertEquals(initMoves, 1);
-    }
-
-    @Test
-    public void customInitializationWorks() {
+        int numOfMoves = character.getNumOfMoves();
+        assertEquals(numOfMoves, 0);
 
         try {
-        Map map = new Map(5,9);
-        assertEquals(5, map.getWidth());
-        assertEquals(9, map.getHeight());
-        } catch (Exception e) {
-
+            character.move(DIRECTION.EAST);
+        } catch(GameNotStartedException e) {
+            System.err.println("Exception while moving:" + e.getMessage());
         }
-    }
 
-    @Test
-    public void initializeNegativeWidthBlocked() {
-        assertThrows(Exception.class, () -> {
-            Map map = new Map(-1, 10);   ;
-        });
-    }
-
-    @Test
-    public void initializeNegativeHeightBlocked() {
+         numOfMoves = character.getNumOfMoves();
+        assertEquals(numOfMoves, 1);
 
         try {
-        Map map = new Map(1, -10);
-        
-        assertNull(map, "Unable to create map with negative dimension");
-        } catch (Exception e) {}
+            character.move(DIRECTION.NORTH);
+        } catch(GameNotStartedException e) {
+            System.err.println("Exception while moving:" + e.getMessage());
+        }
+
+        numOfMoves = character.getNumOfMoves();
+        assertEquals(numOfMoves, 2);
+
     }
 }
