@@ -1,6 +1,7 @@
 package com.levelup.forestsandmonsters.features;
 
 import com.levelup.forestsandmonsters.GameController;
+import com.levelup.forestsandmonsters.GameNotStartedException;
 import com.levelup.forestsandmonsters.GameController.DIRECTION;
 
 import io.cucumber.java.en.Given;
@@ -59,7 +60,7 @@ public class MoveSteps {
     }
 
     @When("the character moves")
-    public void the_character_moves() {
+    public void the_character_moves() throws GameNotStartedException {
         // Write code here that turns the phrase above into concrete actions
         gc.move(this.direction);
     }

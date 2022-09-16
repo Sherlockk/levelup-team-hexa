@@ -50,10 +50,11 @@ public class GameControllerTest {
         assertCharacterName(characterName);
     }
 
-    /*******************    move() tests           *************** */
+    /*******************    move() tests           *************** 
+     * @throws GameNotStartedException*/
     // Test valid move north
     @Test
-    public void validMoveNorth(){
+    public void validMoveNorth() throws GameNotStartedException{
         int startingMoveCount = 45;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted", new Point(3,4));
         testObj.move(GameController.DIRECTION.NORTH);
@@ -73,7 +74,7 @@ public class GameControllerTest {
     }
     // Test valid move south
     @Test
-    public void validMoveSouth(){
+    public void validMoveSouth() throws GameNotStartedException{
         int startingMoveCount = 67;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(3,4));
         testObj.move(GameController.DIRECTION.SOUTH);
@@ -84,7 +85,7 @@ public class GameControllerTest {
     }
     // Test valid move east
     @Test
-    public void validMoveEast(){
+    public void validMoveEast() throws GameNotStartedException{
         int startingMoveCount = 213;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(3,4));
 
@@ -96,7 +97,7 @@ public class GameControllerTest {
     }
     // Test valid move west
     @Test
-    public void validMoveWest(){
+    public void validMoveWest() throws GameNotStartedException{
         int startingMoveCount = 51;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(3,4));
         testObj.move(GameController.DIRECTION.WEST);
@@ -107,7 +108,7 @@ public class GameControllerTest {
     }
     // Test invalid move north
     @Test
-    public void invalidMoveNorth(){
+    public void invalidMoveNorth() throws GameNotStartedException{
         int startingMoveCount = 31;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(3,9));
         testObj.move(GameController.DIRECTION.NORTH);
@@ -117,7 +118,7 @@ public class GameControllerTest {
     }
     // Test invalid move south
     @Test
-    public void invalidMoveSouth(){
+    public void invalidMoveSouth() throws GameNotStartedException{
         int startingMoveCount = 99;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(7,0));
         testObj.move(GameController.DIRECTION.SOUTH);
@@ -127,7 +128,7 @@ public class GameControllerTest {
     }
     // Test invalid move east
     @Test
-    public void invalidMoveEast(){
+    public void invalidMoveEast() throws GameNotStartedException{
         int startingMoveCount = 31;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(5,9));
         testObj.move(GameController.DIRECTION.EAST);
@@ -137,7 +138,7 @@ public class GameControllerTest {
     }
     // Test invalid move west
     @Test
-    public void invalidMoveWest(){
+    public void invalidMoveWest() throws GameNotStartedException{
         int startingMoveCount = 39;
         GameController testObj = setupGameControllerForMove(startingMoveCount, "Ted Turner", new Point(0,2));
         testObj.move(GameController.DIRECTION.WEST);
@@ -152,23 +153,32 @@ public class GameControllerTest {
     public void startGameTest(){
 
         GameController testObj = new GameController();
-        testObj.createCharacter("Roy");
+        String testCharacterName = "Roy";
+        testObj.createCharacter(testCharacterName);
         testObj.startGame();
-        assertEquals(testObj.getStatus().characterName, "Roy");
+        assertEquals(testObj.getStatus().characterName, testCharacterName);
         assertEquals(testObj.getStatus().currentPosition.x, 0);
         assertEquals(testObj.getStatus().currentPosition.y, 0);
         assertEquals(testObj.getTotalPositions(), 100);
         assertEquals(testObj.getStatus().moveCount, 0);
+        assertEquals(testObj.getCharacter().getName(), testCharacterName);
+        assertEquals(testObj.getCharacter().getCurrentPosition().x, 0);
+        assertEquals(testObj.getCharacter().getCurrentPosition().y, 0);
+        //assertNotNull(testObj.getCharacter().getMap());
     }
 
     private void assertCharacterName(String characterName) {
         GameController testObj = new GameController();
         testObj.createCharacter(characterName);
         assertNotNull(testObj.getStatus().characterName);
+        String actualCharacterName;
         if (characterName.equals("")) {
-            assertEquals(GameController.DEFAULT_CHARACTER_NAME, testObj.getStatus().characterName);
+            actualCharacterName = GameController.DEFAULT_CHARACTER_NAME;
         } else {
-            assertEquals(characterName, testObj.getStatus().characterName);
+            actualCharacterName = characterName;
         }
+        assertEquals(actualCharacterName, testObj.getStatus().characterName);
+        assertEquals(testObj.getCharacter().getName(), actualCharacterName);
+
     }
 }

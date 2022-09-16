@@ -20,12 +20,12 @@ public class GameController {
 
     GameStatus status;
     Map map;
+    Character character;
 
     public GameController() {
         status = new GameStatus();
     }
 
-    // TODO: Ensure this AND CLI commands match domain model
     public static enum DIRECTION {
         NORTH, SOUTH, EAST, WEST
     }
@@ -38,6 +38,7 @@ public class GameController {
         } else {
             status.characterName = DEFAULT_CHARACTER_NAME;
         }
+        this.character = new Character(status.characterName);
     }
 
     public void startGame() {
@@ -45,8 +46,9 @@ public class GameController {
         // on them?
         // TODO: Should also update the game results?
         this.map = new Map();
-        
-        status.currentPosition = new Point(0,0);
+        Point position = new Point(0,0);
+        this.character.init(map, position);
+        status.currentPosition = position;
         
     }
 
@@ -54,9 +56,10 @@ public class GameController {
         return this.status;
     }
 
-    public void move(DIRECTION directionToMove) {
-        // TODO: Implement move - should call something on another class
-        // TODO: Should probably also update the game results
+    public void move(DIRECTION directionToMove) throws GameNotStartedException {
+        this.character.move(directionToMove);
+        this.status.currentPosition = this.character.getCurrentPosition();
+        this.status.moveCount++;
     }
 
     public void setCharacterPosition(Point coordinate) {
@@ -71,5 +74,8 @@ public class GameController {
     }
     public int getMoveCount() {
         return getStatus().moveCount;
+    }
+    public Character getCharacter() {
+        return this.character;
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.levelup.forestsandmonsters.GameController;
+import com.levelup.forestsandmonsters.GameNotStartedException;
 import com.levelup.forestsandmonsters.GameController.GameStatus;
 
 import org.springframework.shell.Availability;
@@ -48,28 +49,28 @@ public class LevelUpGame implements Quit.Command {
 
   @ShellMethod(value = "Move North", key = { "N", "n" }, group = "Move")
   @ShellMethodAvailability("startedCheck")
-  public void moveNorth() {
+  public void moveNorth() throws GameNotStartedException {
     gameController.move(GameController.DIRECTION.NORTH);
     updateStatus(gameController.getStatus());
   }
 
   @ShellMethod(value = "Move South", key = { "S", "s" }, group = "Move")
   @ShellMethodAvailability("startedCheck")
-  public void moveSouth() {
+  public void moveSouth() throws GameNotStartedException {
     gameController.move(GameController.DIRECTION.SOUTH);
     updateStatus(gameController.getStatus());
   }
 
   @ShellMethod(value = "Move East", key = { "E", "e" }, group = "Move")
   @ShellMethodAvailability("startedCheck")
-  public void moveEast() {
+  public void moveEast() throws GameNotStartedException {
     gameController.move(GameController.DIRECTION.EAST);
     updateStatus(gameController.getStatus());
   }
 
   @ShellMethod(value = "Move West", key = { "W", "w" }, group = "Move")
   @ShellMethodAvailability("startedCheck")
-  public void moveWest() {
+  public void moveWest() throws GameNotStartedException {
     gameController.move(GameController.DIRECTION.WEST);
     updateStatus(gameController.getStatus());
   }
