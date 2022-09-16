@@ -18,6 +18,10 @@ public class GameController {
         public void setCharacterPosition (Point coordinates) {
             this.currentPosition = coordinates;
         }
+        public String toString() {
+            return characterName + " you moved " + moveCount + " times and ended at (" + 
+                currentPosition.x + "," + currentPosition.y + ")";
+        }
     }
 
     protected Point initialPosition = new Point(INITIAL_X, INITIAL_Y);
@@ -53,6 +57,8 @@ public class GameController {
         // TODO: Should also update the game results?
         this.map = new Map();
         this.character.init(map, this.initialPosition);
+        System.out.println(getCharacter().getName() + " is at (" + 
+            getCharacter().getCurrentPosition().x + "," + getCharacter().getCurrentPosition().y + ")");
         
     }
 
@@ -66,7 +72,9 @@ public class GameController {
 
     public void move(DIRECTION directionToMove) throws GameNotStartedException {
         this.character.move(directionToMove);
-        System.out.println(this.character.getName() + " you just moved " + directionToMove); 
+        System.out.println(this.character.getName() + " you just moved " + directionToMove + 
+        " and you are at (" + this.character.getCurrentPosition().x + "," + 
+        this.character.getCurrentPosition().y + ")"); 
     } 
 
     public int getTotalPositions() {
