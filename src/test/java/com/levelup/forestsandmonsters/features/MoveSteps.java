@@ -24,8 +24,7 @@ public class MoveSteps {
     @Given("the character starts at position with XCoordinate {int}")
     public void the_character_starts_at_position_with_x_coordinate(Integer int1) {
         // Write code here that turns the phrase above into concrete actions
-        gc = new GameController();
-        gc.startGame();
+
         this.startX = int1;
     }
     
@@ -62,6 +61,9 @@ public class MoveSteps {
     @When("the character moves")
     public void the_character_moves() throws GameNotStartedException {
         // Write code here that turns the phrase above into concrete actions
+        gc = new GameController();
+        gc.createCharacter("Geo");
+        gc.startGame();
         gc.move(this.direction);
     }
     
