@@ -45,5 +45,53 @@ public class CharacterTest {
         numOfMoves = character.getNumOfMoves();
         assertEquals(numOfMoves, 2);
 
+        try {
+            character.move(DIRECTION.SOUTH);
+        } catch(GameNotStartedException e) {
+            System.err.println("Exception while moving:" + e.getMessage());
+        }
+
+        numOfMoves = character.getNumOfMoves();
+        assertEquals(numOfMoves, 3);
+
+        try {
+            character.move(DIRECTION.WEST);
+        } catch(GameNotStartedException e) {
+            System.err.println("Exception while moving:" + e.getMessage());
+        }
+
+        numOfMoves = character.getNumOfMoves();
+        assertEquals(numOfMoves, 4);
+
     }
+
+    @Test
+    public void characterInitTest() {
+        Map map = new Map();
+        Point point = new Point(0,0);
+        Character character = new Character("Test");
+        character.init(map, point);
+
+
+        int numOfMoves = character.getNumOfMoves();
+        assertEquals(numOfMoves, 0);
+
+        try {
+            character.move(DIRECTION.EAST);
+        } catch(GameNotStartedException e) {
+            System.err.println("Exception while moving:" + e.getMessage());
+        }
+  
+        try {
+            character.move(DIRECTION.EAST);
+        } catch(GameNotStartedException e) {
+            System.err.println("Exception while moving:" + e.getMessage());
+        }
+        
+        character.init(map, point);
+        numOfMoves = character.getNumOfMoves();
+        assertEquals(numOfMoves, 0);
+    }
+
+
 }

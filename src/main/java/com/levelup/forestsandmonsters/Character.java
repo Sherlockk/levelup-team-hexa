@@ -23,6 +23,7 @@ public class Character {
     public void init(Map pMap, Point position) {
         currentPosition = position;
         map = pMap;
+        numOfMoves = 0;
     }
 
     public Point getCurrentPosition() {
