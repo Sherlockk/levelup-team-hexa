@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class Character {
     private String name;
-    private int numOfMoves;
+    protected int numOfMoves;
     private Point currentPosition;
     private Map map;
 
