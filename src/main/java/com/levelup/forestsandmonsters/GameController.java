@@ -56,6 +56,9 @@ public class GameController {
         // on them?
         // TODO: Should also update the game results?
         this.map = new Map();
+        if (this.character == null) {
+            throw new IllegalStateException("Can not start game without creating the character");
+        }
         this.character.init(map, this.initialPosition);
         System.out.println(getCharacter().getName() + " is at (" + 
             getCharacter().getCurrentPosition().x + "," + getCharacter().getCurrentPosition().y + ")");
