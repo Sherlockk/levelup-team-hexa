@@ -9,7 +9,7 @@ import java.lang.reflect.Executable;
 
 import org.junit.Test;
 
-import com.levelup.forestsandmonsters.cli.LevelUpCharacter;
+import com.levelup.forestsandmonsters.Character;
 import java.awt.Point;
 
 public class CharacterTest {
