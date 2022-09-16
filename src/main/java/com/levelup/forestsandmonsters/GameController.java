@@ -6,6 +6,8 @@ public class GameController {
     // TODO: If your stakeholder wants to call this CHARACTER, change var name for
     // low representational gap
     static final String DEFAULT_CHARACTER_NAME = "Character";
+    static final int INITIAL_X = 0;
+    static final int INITIAL_Y = 0;
 
     public class GameStatus {
         // TODO: Add other status data
@@ -17,6 +19,8 @@ public class GameController {
             this.currentPosition = coordinates;
         }
     }
+
+    protected Point initialPosition = new Point(INITIAL_X, INITIAL_Y);
 
     GameStatus status;
     Map map;
@@ -46,9 +50,8 @@ public class GameController {
         // on them?
         // TODO: Should also update the game results?
         this.map = new Map();
-        Point position = new Point(0,0);
-        this.character.init(map, position);
-        status.currentPosition = position;
+        this.character.init(map, this.initialPosition);
+        status.currentPosition = this.initialPosition;
         
     }
 
@@ -77,5 +80,12 @@ public class GameController {
     }
     public Character getCharacter() {
         return this.character;
+    }
+
+    protected void setInitialPosition(Point initialPosition) {
+        this.initialPosition = initialPosition;
+    }
+    protected Point getInitialPosition() {
+        return this.initialPosition;
     }
 }

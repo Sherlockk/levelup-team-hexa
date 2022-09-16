@@ -166,6 +166,27 @@ public class GameControllerTest {
         assertEquals(testObj.getCharacter().getCurrentPosition().y, 0);
         //assertNotNull(testObj.getCharacter().getMap());
     }
+    @Test
+    //Make sure we have initialized all the start values
+    public void startGameWithDifferentPositionTest(){
+
+        GameController testObj = new GameController();
+        String testCharacterName = "Roy";
+        testObj.createCharacter(testCharacterName);
+        int initialX = 3;
+        int initialY = 7;
+        testObj.setInitialPosition(new Point(initialX, initialY));
+        testObj.startGame();
+        assertEquals(testObj.getStatus().characterName, testCharacterName);
+        assertEquals(testObj.getStatus().currentPosition.x, initialX);
+        assertEquals(testObj.getStatus().currentPosition.y, initialY);
+        assertEquals(testObj.getTotalPositions(), 100);
+        assertEquals(testObj.getStatus().moveCount, 0);
+        assertEquals(testObj.getCharacter().getName(), testCharacterName);
+        assertEquals(testObj.getCharacter().getCurrentPosition().x, initialX);
+        assertEquals(testObj.getCharacter().getCurrentPosition().y, initialY);
+        //assertNotNull(testObj.getCharacter().getMap());
+    }
 
     private void assertCharacterName(String characterName) {
         GameController testObj = new GameController();
